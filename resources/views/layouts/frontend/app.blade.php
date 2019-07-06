@@ -19,6 +19,7 @@
 	<link href="{{asset('assets')}}/frontend/css/swiper.css" rel="stylesheet">
 
     <link href="{{asset('assets')}}/frontend/css/ionicons.css" rel="stylesheet">
+
     @stack('css')
 
 </head>
@@ -26,7 +27,7 @@
     @include('layouts.frontend.partial.header')
     @yield('content')
     @include('layouts.frontend.partial.footer')
-<script src="{{asset('assets')}}/frontend/js/jquery-3.1.1.min.js"></script>
+    <script src="{{asset('assets')}}/frontend/js/jquery-3.1.1.min.js"></script>
 
 	<script src="{{asset('assets')}}/frontend/js/tether.min.js"></script>
 
