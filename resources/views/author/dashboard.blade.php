@@ -3,6 +3,7 @@
 @section('title','Dashboard')
 
 @push('css')
+@endpush
 
 @section('content')
 <div class="container-fluid">
