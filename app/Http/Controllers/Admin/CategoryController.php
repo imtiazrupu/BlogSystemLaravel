@@ -144,7 +144,7 @@ class CategoryController extends Controller
              {
                  Storage::disk('public')->makeDirectory('category/slider');
              }
-              // delete old image
+              // delete old slider image
             if(Storage::disk('public')->exists('category/slider/'.$category->image))
             {
                 storage::disk('public')->delete('category/slider/'.$category->image);
@@ -171,6 +171,17 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if(Storage::disk('public')->exists('category/'.$category->image))
+            {
+                storage::disk('public')->delete('category/'.$category->image);
+            }
+        if(Storage::disk('public')->exists('category/slider/'.$category->image))
+            {
+                storage::disk('public')->delete('category/slider/'.$category->image);
+            }
+        $category->delete();
+        Toastr::success('Category Delete Successfully', 'Success');
+        return redirect()->back();
     }
 }
