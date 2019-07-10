@@ -60,11 +60,12 @@
                                 @foreach ($posts as $key=>$post)
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ str_limit($post->body,'15') }}</td>
+                                <td>{{ $post->title }}</td>
+                               {{-- <td>{{ str_limit($post->body,'15') }}</td> --}}
                                 <td>{{ $post->user->name}}</td>
                                 <td>{{ $post->view_count}}</td>
                                 <td>
-                                    @if( $post->view_count == true)
+                                    @if( $post->is_approved == true)
                                     <span class="badge bg-blue">Approved</span>
                                     @else
                                     <span class="badge bg-pink"> Pending</span>
