@@ -39,7 +39,6 @@
                                     <th>Is Approved</th>
                                     <th>Status</th>
                                     <th>Created At</th>
-                                    <th>Updated At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,7 +51,6 @@
                                         <th>Is Approved</th>
                                         <th>Status</th>
                                         <th>Created At</th>
-                                        <th>Updated At</th>
                                         <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -60,7 +58,7 @@
                                 @foreach ($posts as $key=>$post)
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $post->title }}</td>
+                                <td>{{ str_limit($post->title,'15') }}</td>
                                {{-- <td>{{ str_limit($post->body,'15') }}</td> --}}
                                 <td>{{ $post->user->name}}</td>
                                 <td>{{ $post->view_count}}</td>
@@ -80,8 +78,11 @@
                                     @endif
                                 </td>
                                 <td>{{ $post->created_at}}</td>
-                                <td>{{ $post->updated_at}}</td>
                                 <td class="text-center">
+                                <a href="{{route('admin.post.show',$post->id)}}" class="btn btn-info waves-effect">
+                                <i class="material-icons">visibility</i>
+                                </a>
+
                                 <a href="{{route('admin.post.edit',$post->id)}}" class="btn btn-info waves-effect">
                                 <i class="material-icons">edit</i>
                                 </a>
