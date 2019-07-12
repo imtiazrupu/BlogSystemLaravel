@@ -8,21 +8,22 @@
 
 @section('content')
 <div class="container-fluid">
-        <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('author.post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                ADD NEW POST
+                                EDIT POST
                                 <small>With floating label</small>
                             </h2>
                         </div>
                         <div class="body">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" id="title" class="form-control" name="title">
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ $post->title}}">
                                     <label class="form-label">Post Title</label>
                                 </div>
                             </div>
@@ -31,7 +32,8 @@
                                 <input type="file" name="image">
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" id="publish" class="filled-in" name="status" value="1">
+                                <input type="checkbox" id="publish" class="filled-in" name="status" value="1"
+                                {{ $post->status == true? 'checked': ''}}>
                                 <label for="publish"> Publish</label>
                             </div>
                         </div>
@@ -52,23 +54,29 @@
                                         <select name="categories[]" id="category" class="form-control show-tick"
                                         data-live-search="true" multiple>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name}}</option>
+                                            <option @foreach ($post->categories as $postCategory)
+                                            {{ $postCategory->id == $category->id ? 'selected': ''}}
+                                            @endforeach
+                                            value="{{ $category->id }}">{{ $category->name}}</option>
                                         @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                         <div class="form-line {{ $errors->has('tags') ? 'focused error' : ''}}">
-                                            <label for="category">Select Tags</label>
+                                            <label for="tag">Select Tags</label>
                                             <select name="tags[]" id="tag" class="form-control show-tick"
                                             data-live-search="true" multiple>
                                             @foreach ($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name}}</option>
+                                                <option @foreach ($post->tags as $postTags)
+                                                    {{ $postTags->id == $tag->id ? 'selected': ''}}
+                                                    @endforeach
+                                                value="{{ $tag->id }}">{{ $tag->name}}</option>
                                             @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                <a class="btn btn-danger m-t-15 waves-effect" href="{{route('admin.post.index')}}"> BACK</a>
+                                <a class="btn btn-danger m-t-15 waves-effect" href="{{route('author.post.index')}}"> BACK</a>
                                 <button type="submit" class="btn btn-success m-t-15 waves-effect">SUBMIT</button>
                             </div>
                         </div>
@@ -84,7 +92,7 @@
                                 </h2>
                             </div>
                             <div class="body">
-                                <textarea id="tinymce" name="body"></textarea>
+                               <textarea id="tinymce" name="body">{{ $post->body}}</textarea>
                             </div>
                         </div>
                     </div>
