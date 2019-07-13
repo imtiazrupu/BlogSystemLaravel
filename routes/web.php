@@ -22,6 +22,9 @@ Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middle
     Route::resource('tag','TagController');
     Route::resource('category','CategoryController');
     Route::resource('post','PostController');
+    Route::get('/pending/post','PostController@pending')->name('post.pending');
+    Route::put('/post/{id}/approve','PostController@approval')->name('post.approve');
+
 });
 
 Route::group(['as'=>'author.','prefix' => 'author', 'namespace' => 'Author','middleware'=>['auth','author']], function () {

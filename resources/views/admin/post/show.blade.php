@@ -10,7 +10,12 @@
 <div class="container-fluid">
     <a href="{{ route('admin.post.index')}}" class="btn btn-danger waves-effect">Back</a>
     @if($post->is_approved == false)
-    <button type="button" class="btn btn-success pull-right">
+    <button type="button" class="btn btn-success waves-effect pull-right" onclick="approvePost({{ $post->id}})">
+        <form id="approval-form" action="{{route('admin.post.approve',$post->id)}}"
+            method="POST" style="display:none;">
+           @csrf
+           @method('PUT')
+           </form>
         <i class="material-icons">done</i>
         <span>Approve</span>
     </button>
@@ -85,6 +90,7 @@
   <script src="{{asset('assets')}}/backend/plugins/bootstrap-select/js/bootstrap-select.js"></script>
    <!-- TinyMCE -->
    <script src="{{asset('assets')}}/backend/plugins/tinymce/tinymce.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
    <script>
        $(function () {
 
@@ -106,6 +112,39 @@
     tinymce.suffix = ".min";
     tinyMCE.baseURL = '{{asset('assets')}}/backend/plugins/tinymce';
 });
+            function approvePost(id){
+                    const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You want to approve this post!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, approve it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.value) {
+            event.preventDefault();
+            document.getElementById('approval-form').submit();
+            } else if (
+                // Read more about handling dismissals
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'The post remains pending :)',
+                'info'
+                )
+            }
+            })
+                }
    </script>
 
 @endpush
