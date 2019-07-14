@@ -91,7 +91,7 @@ class PostController extends Controller
           $post->categories()->attach($request->categories);
           $post->tags()->attach($request->tags);
           Toastr::success('Post Created Successfully', 'Success');
-        return redirect()->route('author.post.index');
+          return redirect()->route('author.post.index');
     }
 
     /**
@@ -102,6 +102,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if($post->user_id != Auth::id())
+        {
+            Toastr::error('You are not authorized to access this post', 'Error');
+            return redirect()->route('author.post.index');
+        }
         return view('author.post.show',compact('post'));
     }
 
@@ -113,6 +118,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if($post->user_id != Auth::id())
+        {
+            Toastr::error('You are not authorized to access this post', 'Error');
+            return redirect()->route('author.post.index');
+        }
         $categories = Category::all();
         $tags = Tag::all();
 
@@ -128,6 +138,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if($post->user_id != Auth::id())
+        {
+            Toastr::error('You are not authorized to access this post', 'Error');
+            return redirect()->route('author.post.index');
+        }
         $this->validate($request,[
             'title' => 'required',
             'image' => 'image',
@@ -188,6 +203,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->user_id != Auth::id())
+        {
+            Toastr::error('You are not authorized to access this post', 'Error');
+            return redirect()->route('author.post.index');
+        }
         if(Storage::disk('public')->exists('post/'.$post->image))
             {
                 storage::disk('public')->delete('post/'.$post->image);
