@@ -91,7 +91,7 @@ class PostController extends Controller
           $post->categories()->attach($request->categories);
           $post->tags()->attach($request->tags);
           Toastr::success('Post Created Successfully', 'Success');
-        return redirect()->route('admin.post.index');
+          return redirect()->route('admin.post.index');
     }
 
     /**
