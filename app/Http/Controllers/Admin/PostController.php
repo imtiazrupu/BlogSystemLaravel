@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Notifications\AuthorPostApproved;
 
 class PostController extends Controller
 {
@@ -193,6 +194,7 @@ class PostController extends Controller
         {
             $post->is_approved = true;
             $post->save();
+            $post->user->notify(new AuthorPostApproved($post));
             Toastr::success('Post Approved Successfully', 'Success');
         }else
         {
