@@ -10,9 +10,9 @@
 <div class="container-fluid">
     <a href="{{ route('author.post.index')}}" class="btn btn-danger waves-effect">Back</a>
     @if($post->is_approved == false)
-    <button type="button" class="btn btn-success pull-right">
-        <i class="material-icons">done</i>
-        <span>Approve</span>
+    <button type="button" class="btn btn-danger pull-right" disabled>
+        <i class="material-icons">error</i>
+        <span>Pending</span>
     </button>
     @else
     <button type="button" class="btn btn-success pull-right" disabled>
