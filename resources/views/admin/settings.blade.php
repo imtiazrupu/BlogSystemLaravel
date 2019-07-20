@@ -37,8 +37,8 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#profile_with_icon_title" data-toggle="tab">
-                                        <i class="material-icons">face</i> PASSWORD
+                                    <a href="#change_password_with_icon_title" data-toggle="tab">
+                                        <i class="material-icons">change_history</i> CHANGE PASSWORD
                                     </a>
                                 </li>
                             </ul>
@@ -46,7 +46,8 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="profile_with_icon_title">
-                                    <form action="{{ route('admin.profile.update')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                    <form action="{{ route('admin.profile.update')}}" method="POST"
+                                    enctype="multipart/form-data" class="form-horizontal">
                                         @csrf
                                         @method('PUT')
                                                <div class="row clearfix">
@@ -111,14 +112,58 @@
                                                 </div>
                                             </form>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
-                                    <b>Profile Content</b>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                        sadipscing mel.
-                                    </p>
+                                <div role="tabpanel" class="tab-pane fade" id="change_password_with_icon_title">
+                                    <form action="{{ route('admin.password.update')}}" method="POST" class="form-horizontal">
+                                        @csrf
+                                        @method('PUT')
+                                               <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                    <label for="old_password">Old Password</label>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="password" name="old_password" id="old_password"
+                                                            class="form-control" placeholder="Enter your old password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               </div>
+
+                                               <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                    <label for="password">New Password</label>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="password" name="password" id="password"
+                                                            class="form-control" placeholder="Enter your new password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               </div>
+
+                                               <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                    <label for="password_confirmation">Confirm Password</label>
+                                                </div>
+                                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                                            class="form-control" placeholder="Enter your new password again">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               </div>
+
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">UPDATE</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                 </div>
                             </div>
                         </div>
