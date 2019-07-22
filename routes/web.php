@@ -17,6 +17,11 @@ Route::post('subscriber','SubscriberController@store')->name('subscriber.store')
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('favorite/{id}/add','FavoriteController@add')->name('post.favorite');
+
+});
+
 Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middleware'=>['auth','admin']], function () {
     Route::get('dashboard','DashboardController@index')->name('dashboard');
 
