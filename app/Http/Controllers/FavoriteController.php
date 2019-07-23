@@ -19,7 +19,7 @@ class FavoriteController extends Controller
             Toastr::success('Post Successfully Added To Your Favorite List', 'Success');
             return redirect()->back();
         }else{
-            $user->favorite_posts()->dettach($id);
+            $user->favorite_posts()->detach($id);
             Toastr::success('Post Successfully Remove To Your Favorite List', 'Success');
           return redirect()->back();
         }

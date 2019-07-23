@@ -30,9 +30,10 @@ Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middle
     Route::put('profile/update','SettingsController@updateProfile')->name('profile.update');
     Route::put('password/update','SettingsController@updatePassword')->name('password.update');
 
-
     Route::resource('tag','TagController');
     Route::resource('category','CategoryController');
+
+    //Post
     Route::resource('post','PostController');
     Route::get('/pending/post','PostController@pending')->name('post.pending');
     Route::put('/post/{id}/approve','PostController@approval')->name('post.approve');
@@ -40,6 +41,8 @@ Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middle
     Route::get('/subsriber','SubscriberController@index')->name('subscriber.index');
     Route::delete('/subsriber/{id}','SubscriberController@destroy')->name('subscriber.destroy');
 
+    //Favorite Post
+    Route::get('/favorite','FavoriteController@index')->name('favorite.index');
 });
 
 Route::group(['as'=>'author.','prefix' => 'author', 'namespace' => 'Author','middleware'=>['auth','author']], function () {
@@ -51,4 +54,7 @@ Route::group(['as'=>'author.','prefix' => 'author', 'namespace' => 'Author','mid
      Route::put('password/update','SettingsController@updatePassword')->name('password.update');
 
     Route::resource('post','PostController');
+
+     //Favorite Post
+     Route::get('/favorite','FavoriteController@index')->name('favorite.index');
 });
