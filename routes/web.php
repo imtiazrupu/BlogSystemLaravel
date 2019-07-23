@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('post/{slug}', 'PostController@details')->name('post.details');
 
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 
