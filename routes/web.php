@@ -12,7 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+
+//Froentend Post
 Route::get('post/{slug}', 'PostController@details')->name('post.details');
+Route::get('posts', 'PostController@index')->name('post.index');
 
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 
@@ -34,7 +37,7 @@ Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middle
     Route::resource('tag','TagController');
     Route::resource('category','CategoryController');
 
-    //Post
+    //Dashboard Post
     Route::resource('post','PostController');
     Route::get('/pending/post','PostController@pending')->name('post.pending');
     Route::put('/post/{id}/approve','PostController@approval')->name('post.approve');
