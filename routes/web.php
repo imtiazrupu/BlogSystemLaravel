@@ -17,6 +17,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('post/{slug}', 'PostController@details')->name('post.details');
 Route::get('posts', 'PostController@index')->name('post.index');
 
+//Category wise post
+Route::get('category/{slug}', 'PostController@postByCategory')->name('category.posts');
+
+//Tag wise post
+Route::get('tag/{slug}', 'PostController@postByTag')->name('tag.posts');
+
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 
 Auth::routes();
