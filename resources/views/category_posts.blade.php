@@ -13,8 +13,9 @@
         .slider {
     height: 400px;
     width: 100%;
-    background-image: url({{ Storage::disk('public')->url('category/'.$category->image)}});
     background-size: cover;
+    background-image: url({{ Storage::disk('public')->url('category/'.$category->image)}});
+
 }
     </style>
 @endpush
@@ -70,7 +71,7 @@
 
             @endforeach
             @else
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-12 col-md-12">
                     <div class="card h-100">
                         <div class="single-post post-style-1">
                             <div class="blog-info">
