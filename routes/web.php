@@ -58,6 +58,10 @@ Route::group(['as'=>'admin.','prefix' => 'admin', 'namespace' => 'Admin','middle
     //Favorite Post
     Route::get('/favorite','FavoriteController@index')->name('favorite.index');
 
+    //Author
+    Route::get('/authors','AuthorController@index')->name('author.index');
+    Route::delete('/authors/{id}','AuthorController@destroy')->name('author.destroy');
+
     //Comments
     Route::get('/comments','CommentController@index')->name('comment.index');
     Route::delete('/comments/{id}','CommentController@destroy')->name('comment.destroy');
