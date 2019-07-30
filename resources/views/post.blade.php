@@ -216,7 +216,7 @@
                         <div class="post-info">
 
                             <div class="left-area">
-                                <a class="avatar" href="#"><img src="{{ Storage::disk('public')->url('profile/'.$comment->user->image)}}" alt="Profile Image"></a>
+                                <a class="avatar" href="{{ route('author.profile',$post->user->username)}}"><img src="{{ Storage::disk('public')->url('profile/'.$comment->user->image)}}" alt="Profile Image"></a>
                             </div>
 
                             <div class="middle-area">

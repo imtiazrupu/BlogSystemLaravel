@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
+//Public Author Profile
+Route::get('profile/{username}', 'AuthorController@profile')->name('author.profile');
+
 //Froentend Post
 Route::get('post/{slug}', 'PostController@details')->name('post.details');
 Route::get('posts', 'PostController@index')->name('post.index');

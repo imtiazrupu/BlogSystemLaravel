@@ -32,7 +32,7 @@
                             <div class="blog-image"><img src="{{ Storage::disk('public')->url('post/'.$post->image)}}"
                                 alt={{ $post->image}}></div>
 
-                            <a class="avatar" href="#"><img src="{{ Storage::disk('public')->url('profile/'.$post->user->image)}}" alt="Profile Image"></a>
+                            <a class="avatar" href="{{ route('author.profile',$post->user->username)}}"><img src="{{ Storage::disk('public')->url('profile/'.$post->user->image)}}" alt="Profile Image"></a>
 
                             <div class="blog-info">
                             <h4 class="title"><a href="{{ route('post.details',$post->slug)}}"><b>{{ $post->title}}</b></a></h4>
